@@ -4,3 +4,9 @@ C:\Users\jcarrillo\Documents\Visual Studio 2015\Projects\Resistor_Val_Program\Re
 C:\Users\jcarrillo\Documents\Visual Studio 2015\Projects\Resistor_Val_Program\Resistor_Val_Program\obj\Debug\Resistor_Val_Program.csprojResolveAssemblyReference.cache
 C:\Users\jcarrillo\Documents\Visual Studio 2015\Projects\Resistor_Val_Program\Resistor_Val_Program\obj\Debug\Resistor_Val_Program.exe
 C:\Users\jcarrillo\Documents\Visual Studio 2015\Projects\Resistor_Val_Program\Resistor_Val_Program\obj\Debug\Resistor_Val_Program.pdb
+C:\@code\Resistor\Resistor_Val_Program\Resistor_Val_Program\bin\Debug\Resistor_Val_Program.exe.config
+C:\@code\Resistor\Resistor_Val_Program\Resistor_Val_Program\bin\Debug\Resistor_Val_Program.exe
+C:\@code\Resistor\Resistor_Val_Program\Resistor_Val_Program\bin\Debug\Resistor_Val_Program.pdb
+C:\@code\Resistor\Resistor_Val_Program\Resistor_Val_Program\obj\Debug\Resistor_Val_Program.csprojResolveAssemblyReference.cache
+C:\@code\Resistor\Resistor_Val_Program\Resistor_Val_Program\obj\Debug\Resistor_Val_Program.exe
+C:\@code\Resistor\Resistor_Val_Program\Resistor_Val_Program\obj\Debug\Resistor_Val_Program.pdb

@@ -15,10 +15,12 @@ namespace Resistor_Val_Program
             Console.WriteLine("Executing match method: " + temp.match(1000));
             Console.WriteLine("1000 =" + b[temp.match(1000)  ] );
             temp.findResistorsSeries(2500);
-           
-            foreach( var x in Resistor.resistorsSeries)
+
+            foreach (var x in Resistor.resistorsSeries)
             {
-                Console.WriteLine(x);
+
+                Console.WriteLine("Series Resistors:"+ x.firstR.ToString() +
+                    "+" + x.secondR.ToString() +"=" + x.sum().ToString() );
             }
 
             Console.ReadLine();

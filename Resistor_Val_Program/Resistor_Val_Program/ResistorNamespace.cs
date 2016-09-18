@@ -9,7 +9,8 @@ namespace ResistorNamespace
     public class Resistor
     {
 
-        public static  List<double> resistorsSeries = new List<double>();
+        public static  List<SeriesResistors> resistorsSeries = new List<SeriesResistors>();
+        
         public static readonly List<double> resistorValues = new List<double>()
         {
             1.0, 10, 100, 1000, 10000, 100000, 1000000,
@@ -61,14 +62,13 @@ namespace ResistorNamespace
             {
                 for (int b = a+1; b < resistorValues.Count; b++)
                 {
-
-                    Console.WriteLine(resistorValues[a] + ":" + resistorValues[b]);
-                    if ( (a + b >= (x - x*.1)) && (a + b >= (x +x*.1) )) 
+                    double tempNum = resistorValues[a] + resistorValues[b];
+                
+                    if ( (tempNum >= (x - x*.01)) && (tempNum <= (x +x*.01) )) 
                     {
-                        resistorsSeries.Add(resistorValues[a]);
-                        resistorsSeries.Add(resistorValues[b]);
-                        Console.WriteLine(a + ":" + b + ":");
-
+                        SeriesResistors tempResistorSeries = new SeriesResistors(resistorValues[a], resistorValues[b]);
+                        resistorsSeries.Add(tempResistorSeries);
+          
                     }
 
                 }
