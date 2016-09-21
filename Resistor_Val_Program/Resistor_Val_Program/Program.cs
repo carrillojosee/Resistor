@@ -9,19 +9,29 @@ namespace Resistor_Val_Program
     {
         static void Main(string[] args)
         {
-            Resistor temp = new Resistor(); 
+            Resistor temp = new Resistor();
 
             var b = Resistor.resistorValues;
             Console.WriteLine("Executing match method: " + temp.match(1000));
-            Console.WriteLine("1000 =" + b[temp.match(1000)  ] );
+            Console.WriteLine("1000 =" + b[temp.match(1000)]);
             temp.findResistorsSeries(2500);
+            temp.findResistorSeries3(2500);
 
             foreach (var x in Resistor.resistorsSeries)
             {
+                if( x.thirdR == -1 )
+                {
+                    Console.WriteLine("Series Resistors:" + x.firstR.ToString() +
+                         "+" + x.secondR.ToString() + "=" + x.sum().ToString());
+                }
+                else
+                {
+                    Console.WriteLine("Series Resistors:" + x.firstR.ToString() +
+                         "+" + x.secondR.ToString() + "+" + x.thirdR.ToString() + "=" + x.sum().ToString());
+                }
 
-                Console.WriteLine("Series Resistors:"+ x.firstR.ToString() +
-                    "+" + x.secondR.ToString() +"=" + x.sum().ToString() );
             }
+            //temp.findResistorSeries3();
 
             Console.ReadLine();
         }

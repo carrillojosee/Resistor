@@ -74,5 +74,27 @@ namespace ResistorNamespace
                 }
             }
         }
+
+        public void findResistorSeries3(double x)
+        {
+            for( int i = 0; i < resistorValues.Count - 3; i++)
+            {
+                for (int j = i+1; j < resistorValues.Count - 2; j++)
+                {
+                    for (int k = i+2; k < resistorValues.Count - 1; k++)
+                    {
+                        // Console.WriteLine( "i:" + i +  " j:" + j + " k:" + k);
+                        double tempNum = resistorValues[i] + resistorValues[j] + resistorValues[k];
+
+                        if ((tempNum >= (x - x * .01)) && (tempNum <= (x + x * .01)))
+                        {
+                            SeriesResistors tempResistorSeries = new SeriesResistors(resistorValues[i], resistorValues[j], resistorValues[k]);
+                            resistorsSeries.Add(tempResistorSeries);
+                        }
+
+                    }
+                }
+            }
+        }
     }
 }
