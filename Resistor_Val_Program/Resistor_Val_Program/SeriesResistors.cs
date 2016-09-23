@@ -35,5 +35,18 @@ namespace ResistorNamespace
                 return firstR + secondR + thirdR;
             }
         }
+        public override string ToString()
+        {
+            if (thirdR == -1)
+            {
+                return "Series Resistors:" + firstR.ToString() +
+                     "+" + secondR.ToString() + "=" + sum().ToString(); 
+            }
+            else
+            {
+                return "Series Resistors:" + firstR.ToString() +
+                     "+" + secondR.ToString() + "+" + thirdR.ToString() + "=" + sum().ToString();
+            }
+        }
     }
 }

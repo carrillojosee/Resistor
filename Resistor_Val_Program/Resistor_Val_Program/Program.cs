@@ -19,16 +19,7 @@ namespace Resistor_Val_Program
 
             foreach (var x in Resistor.resistorsSeries)
             {
-                if( x.thirdR == -1 )
-                {
-                    Console.WriteLine("Series Resistors:" + x.firstR.ToString() +
-                         "+" + x.secondR.ToString() + "=" + x.sum().ToString());
-                }
-                else
-                {
-                    Console.WriteLine("Series Resistors:" + x.firstR.ToString() +
-                         "+" + x.secondR.ToString() + "+" + x.thirdR.ToString() + "=" + x.sum().ToString());
-                }
+                Console.WriteLine( x.ToString() );
 
             }
             //temp.findResistorSeries3();
