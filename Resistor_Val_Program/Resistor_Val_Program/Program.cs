@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ResistorNamespace;
+using System.IO; 
 namespace Resistor_Val_Program
 {
     class Program
@@ -11,20 +12,21 @@ namespace Resistor_Val_Program
         {
             Resistor temp = new Resistor();
 
-            var b = Resistor.resistorValues;
-            Console.WriteLine("Executing match method: " + temp.match(1000));
-            Console.WriteLine("1000 =" + b[temp.match(1000)]);
+            //var b = Resistor.resistorValues;
+            //Console.WriteLine("Executing match method: " + temp.match(1000));
+            //Console.WriteLine("1000 =" + b[temp.match(1000)]);
+            temp.findResistor(2500);
             temp.findResistorsSeries(2500);
             temp.findResistorSeries3(2500);
 
-            foreach (var x in Resistor.resistorsSeries)
+            StreamWriter file = new StreamWriter(@"C:\@code\Resistor\outputResis.txt");
+            foreach (var x in temp.resistorsSeries)
             {
-                Console.WriteLine( x.ToString() );
-
+                file.WriteLine( x.ToString() );
             }
             //temp.findResistorSeries3();
-
-            Console.ReadLine();
+            //Console.WriteLine(temp.resistorsSeries.Count);
+            //Console.ReadLine();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace ResistorNamespace
     public class Resistor
     {
 
-        public static  List<SeriesResistors> resistorsSeries = new List<SeriesResistors>();
+        public List<EquivalentResistor> resistorsSeries = new List<EquivalentResistor>();
         
         public static readonly List<double> resistorValues = new List<double>()
         {
@@ -39,23 +39,41 @@ namespace ResistorNamespace
             9.1, 91, 910, 9100, 91000, 910000, 9100000
          };
 
-        public int match(double x)
+        public double match(double x)
         {
-            //foreach( var b in resistorValues)
-            //{ 
-            //    if( b == x)
-            //    {
-            //        return 1; 
-            //    }
-    
-            //}
-            //for( int i =0; i < resistorValues.Count; i++)
-            // {
+            double tempNum = -1;
+            for (int a = 0; a < resistorValues.Count - 1; a++)
+            {
+                tempNum = resistorValues[a];
 
-            //}
-           return resistorValues.IndexOf(x);
-           // return -1; 
+                if ((tempNum >= (x - x * .01)) && (tempNum <= (x + x * .01)))
+                {
+                    //Console.WriteLine(tempNum);
+                    return tempNum;
+                    
+                }
+            }
+            return tempNum;
         }
+
+        public void findResistor(double res)
+        {
+            double tempVal = match(res);
+            if( tempVal == -1)
+            {
+                Console.WriteLine("There no one Resistor that matches/comes close to: " + res);
+            }
+            else
+            {
+                EquivalentResistor temp1 = new EquivalentResistor(res, "none");
+                resistorsSeries.Add(temp1);
+                //Console.WriteLine(resistorsSeries.Count);
+            }
+        }
+
+        /* 
+         *  Series Resistor code below:
+        */
         public void findResistorsSeries(double x)
         {
             for( int a = 0; a < resistorValues.Count-1; a++)
@@ -66,9 +84,9 @@ namespace ResistorNamespace
                 
                     if ( (tempNum >= (x - x*.01)) && (tempNum <= (x +x*.01) )) 
                     {
-                        SeriesResistors tempResistorSeries = new SeriesResistors(resistorValues[a], resistorValues[b]);
-                        resistorsSeries.Add(tempResistorSeries);
-          
+                        EquivalentResistor temp2 = new EquivalentResistor(resistorValues[a], resistorValues[b], "Series");
+                        resistorsSeries.Add(temp2);
+                        //Console.WriteLine(resistorsSeries.Count);
                     }
 
                 }
@@ -88,13 +106,41 @@ namespace ResistorNamespace
 
                         if ((tempNum >= (x - x * .01)) && (tempNum <= (x + x * .01)))
                         {
-                            SeriesResistors tempResistorSeries = new SeriesResistors(resistorValues[i], resistorValues[j], resistorValues[k]);
-                            resistorsSeries.Add(tempResistorSeries);
+                            EquivalentResistor temp3 = new EquivalentResistor(resistorValues[i], resistorValues[j], resistorValues[k], "Series");
+                            resistorsSeries.Add(temp3);
+                            //Console.WriteLine(resistorsSeries.Count);
                         }
 
                     }
                 }
             }
+        }
+
+        /*
+         *  Parallel Resistor Code below: 
+         */
+        public void findResistorsParallel(double x)
+        {
+            
+            for (int a = 0; a < resistorValues.Count - 1; a++)
+            {
+                for (int b = a + 1; b < resistorValues.Count; b++)
+                {
+                    double tempNum = parallelCalc(resistorValues[a], resistorValues[b]);
+
+                    if ((tempNum >= (x - x * .01)) && (tempNum <= (x + x * .01)))
+                    {
+                       
+                        //Console.WriteLine(resistorsSeries.Count);
+                    }
+
+                }
+            }
+        }
+        public double parallelCalc(double a, double b)
+        {
+            double tempVal = 1 / a + 1 / b; 
+            return Math.Pow(tempVal, -1);
         }
     }
 }
