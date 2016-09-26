@@ -51,11 +51,28 @@ namespace ResistorNamespace
                 return firstR + secondR + thirdR;
             }
         }
+        public double parallelEQ()
+        {
+            if (thirdR == -1 && secondR == -1)
+            {
+                return firstR;
+            }
+            else if (thirdR == -1)
+            {
+                double tempVal = 1 / firstR + 1 / secondR;
+                return Math.Pow(tempVal, -1);
+            }
+            else
+            {
+                double tempVal = 1 / thirdR + 1 / secondR +1/thirdR;
+                return Math.Pow(tempVal, -1);
+            }
+        }
         public override string ToString()
         {
             //string tempString = "";
             //if (p_or_s.Equals("series");
-
+            //string temp = p_or_s == "Series" ? sum.toString() : parallelEQ().toString();
             if (thirdR == -1 && secondR == -1)
             {
                 return "Resistor " + firstR.ToString() +
@@ -63,13 +80,14 @@ namespace ResistorNamespace
             }
             else if( thirdR==-1)
             {
-                return p_or_s + " " +  firstR.ToString() +
-                     "+" + secondR.ToString() + "=" + sum().ToString();
+                return p_or_s + " " + firstR.ToString() +
+                     "+" + secondR.ToString() + "=" + (p_or_s == "Series" ? sum().ToString(): parallelEQ().ToString() );
+                // p_or_s =="Series": sum.toString(): parallelEQ.toString()
             }
             else
             {
                 return p_or_s + " " + firstR.ToString() +
-                     "+" + secondR.ToString() + "+" + thirdR.ToString() + "=" + sum().ToString();
+                     "+" + secondR.ToString() + "+" + thirdR.ToString() + "=" + (p_or_s == "Series" ? sum().ToString() : parallelEQ().ToString());
             }
         }
     }
