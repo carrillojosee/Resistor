@@ -64,7 +64,7 @@ namespace ResistorNamespace
             }
             else
             {
-                double tempVal = 1 / thirdR + 1 / secondR +1/thirdR;
+                double tempVal = 1 / firstR + 1 / secondR + 1 / thirdR;
                 return Math.Pow(tempVal, -1);
             }
         }
