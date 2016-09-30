@@ -4,13 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/*
+ * for parallel and series resistor in which we find a combination of either parall or series resistor that equal 
+ * to the wanted/equivalent resistor value. Add options that limit which resistors they have on hand. 
+ * 
+ */
 namespace ResistorNamespace
 {
     public class Resistor
     {
-
-        public List<EquivalentResistor> resistorsSeries = new List<EquivalentResistor>();
+        //resistor parallel Series List
+        public List<EquivalentResistor> resistor_P_S_List = new List<EquivalentResistor>();
         
+        //rename to standardResistorValues
         public static readonly List<double> resistorValues = new List<double>()
         {
             1.0, 10, 100, 1000, 10000, 100000, 1000000,
@@ -38,7 +44,14 @@ namespace ResistorNamespace
             8.2, 82, 820, 8200, 82000, 820000, 8200000,
             9.1, 91, 910, 9100, 91000, 910000, 9100000
          };
-
+        public void findAll(double x)
+        {
+            findResistor(x);
+            findResistorSeries(x);
+            findResistorSeries3(x);
+            findResistorParallel(x);
+            findResistorParallel3(x);
+        }
         public double match(double x)
         {
             double tempNum = -1;
@@ -65,16 +78,17 @@ namespace ResistorNamespace
             }
             else
             {
+                //maybe just add a message or output a message saying to use the standard value
                 EquivalentResistor temp1 = new EquivalentResistor(res, "none");
-                resistorsSeries.Add(temp1);
-                //Console.WriteLine(resistorsSeries.Count);
+                resistor_P_S_List.Add(temp1);
+                //Console.WriteLine(resistor_P_S_List.Count);
             }
         }
 
         /* 
          *  Series Resistor code below:
         */
-        public void findResistorsSeries(double x)
+        public void findResistorSeries(double x)
         {
             for( int a = 0; a < resistorValues.Count-2; a++)
             {
@@ -85,8 +99,8 @@ namespace ResistorNamespace
                     if ( (tempNum >= (x - x*.01)) && (tempNum <= (x +x*.01) )) 
                     {
                         EquivalentResistor temp2 = new EquivalentResistor(resistorValues[a], resistorValues[b], "Series");
-                        resistorsSeries.Add(temp2);
-                        //Console.WriteLine(resistorsSeries.Count);
+                        resistor_P_S_List.Add(temp2);
+                        //Console.WriteLine(resistor_P_S_List.Count);
                     }
 
                 }
@@ -107,8 +121,8 @@ namespace ResistorNamespace
                         if ((tempNum >= (x - x * .01)) && (tempNum <= (x + x * .01)))
                         {
                             EquivalentResistor temp3 = new EquivalentResistor(resistorValues[i], resistorValues[j], resistorValues[k], "Series");
-                            resistorsSeries.Add(temp3);
-                            //Console.WriteLine(resistorsSeries.Count);
+                            resistor_P_S_List.Add(temp3);
+                            //Console.WriteLine(resistor_P_S_List.Count);
                         }
 
                     }
@@ -119,7 +133,7 @@ namespace ResistorNamespace
         /*
          *  Parallel Resistor Code below: 
          */
-        public void findResistorsParallel(double x)
+        public void findResistorParallel(double x)
         {
             
             for (int a = 0; a < resistorValues.Count - 2; a++)
@@ -131,8 +145,8 @@ namespace ResistorNamespace
                     if ((tempNum >= (x - x * .01)) && (tempNum <= (x + x * .01)))
                     {
                         EquivalentResistor temp3 = new EquivalentResistor(resistorValues[a], resistorValues[b], "Parallel");
-                        resistorsSeries.Add(temp3);
-                        //Console.WriteLine(resistorsSeries.Count);
+                        resistor_P_S_List.Add(temp3);
+                        //Console.WriteLine(resistor_P_S_List.Count);
                     }
 
                 }
@@ -154,8 +168,8 @@ namespace ResistorNamespace
                         if ((tempNum >= (x - x * .01)) && (tempNum <= (x + x * .01)))
                         {
                             EquivalentResistor temp3 = new EquivalentResistor(resistorValues[i], resistorValues[j], resistorValues[k], "Parallel");
-                            resistorsSeries.Add(temp3);
-                            //Console.WriteLine(resistorsSeries.Count);
+                            resistor_P_S_List.Add(temp3);
+                            //Console.WriteLine(resistor_P_S_List.Count);
                         }
 
                     }
