@@ -26,7 +26,7 @@ namespace ResistorNamespace
             grey = 8,
             white = 9
         }
-        enum multiplierColor
+        enum multiplierColors
         {
             black =  1,
             brown =  10,
@@ -36,10 +36,25 @@ namespace ResistorNamespace
             green =  100000,
             blue =   1000000,
             violet = 10000000,
-            grey =   0,
-            white =  0,
             gold =   10,  //need to divide by this
             silver = 100 // need to divide by this
         }
+        public enum toleranceColors
+        {
+            brown = 1,
+            red = 2,
+
+            //need to divide
+            green = 2,
+            blue = 4,
+            violet = 10,
+            grey = 20,
+
+            // no need to divide
+            gold = 5,  
+            silver = 10 
+        }
+       
+      
     }
 }
