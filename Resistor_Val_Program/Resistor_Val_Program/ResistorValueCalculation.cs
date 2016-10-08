@@ -13,7 +13,7 @@ namespace ResistorNamespace
         //make multiplier constant
         // tolerance in percent
         //
-        enum bandValueColors
+        public enum bandValueColors
         {
             black = 0,
             brown = 1,
@@ -26,7 +26,7 @@ namespace ResistorNamespace
             grey = 8,
             white = 9
         }
-        enum multiplierColors
+        public enum multiplierColors
         {
             black =  1,
             brown =  10,
@@ -54,7 +54,18 @@ namespace ResistorNamespace
             gold = 5,  
             silver = 10 
         }
-       
-      
+        public ResistorValueCalculation()
+        {
+
+        }
+        public ResistorValueCalculation(int val1, int val2, int mult, int tol)
+        {
+
+        }
+        public ResistorValueCalculation(int val1, int val2, int val3, int mult, int tol)
+        {
+
+        }
+
     }
 }

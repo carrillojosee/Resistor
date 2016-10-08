@@ -43,7 +43,7 @@ namespace Resistor_Val_Program
             //temp.findResistorParallel(2500);
             //temp.findResistorParallel3(2500);
 
-            StreamWriter file = new StreamWriter(@"C:\@code\Resistor\outputResis2.txt");
+            StreamWriter file = new StreamWriter(@"C:\@code\Resistor_Program\outputResis2.txt");
             foreach (var x in temp.resistor_P_S_List)
             {
                 file.WriteLine( x.ToString() );
@@ -53,7 +53,7 @@ namespace Resistor_Val_Program
             //temp.findResistorSeries3();
             //Console.WriteLine(temp.resistorsSeries.Count);
            ResistorValueCalculation temp3 = new ResistorValueCalculation();
-           Console.WriteLine((double)ResistorValueCalculation.toleranceColors.grey);
+           Console.WriteLine((int)ResistorValueCalculation.toleranceColors.grey);
             Console.ReadLine();
         }
     }
