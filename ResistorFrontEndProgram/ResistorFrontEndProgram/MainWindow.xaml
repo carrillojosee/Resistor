@@ -110,7 +110,15 @@
                     <ComboBoxItem Content="Gold" Background="Gold"/>
                     <ComboBoxItem Content="Silver" Background="Silver"/>
                 </ComboBox>
+                </StackPanel>
+            
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Margin="0,10,0,0">Resistance =</TextBlock>
+                <TextBox Height="20" Width="60" Margin="0,7" IsReadOnly="True"/>
             </StackPanel>
+            <Button Content="Calculate" Width="70" Height="25"/>
+
+
         </StackPanel>
 
         <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1">
@@ -124,11 +132,18 @@
                 <RadioButton GroupName="parallelSeries" Content="Parallel" />
             </StackPanel>
             <TextBlock Text="Enter the resistor values(inside the text block) separated by a space then hit the Calculate button in order to find the equivalent resistance:" TextWrapping="Wrap"/>
-            <TextBox  Height="50" BorderThickness="4"/>
+            
+            <ScrollViewer >
+                <TextBox  Height="50" BorderThickness="4"/>
+            </ScrollViewer>
+            
             <StackPanel Orientation="Horizontal">
                 <TextBlock Margin="0,10,0,0">Equivalent Resistance =</TextBlock>
                 <TextBox Height="20" Width="60" Margin="0,7" IsReadOnly="True"/>
+                <Button Content="Calculate" Width="70" Height="25" HorizontalAlignment="Right" Margin="30,0,0,0"/>
+
             </StackPanel>
+
         </StackPanel>
 
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0">
@@ -148,9 +163,12 @@
             </StackPanel>
             
             <TextBlock Text="Resistor values needed order to get the equivalent resistance that was specified:" TextWrapping="Wrap"/>
-            <TextBox  Height="50" BorderThickness="4" IsReadOnly="True"/>
-
             
+            <ScrollViewer>
+                <TextBox  Height="50" BorderThickness="4" IsReadOnly="True"/>
+            </ScrollViewer>
+            <Button Content="Calculate" Width="70" Height="25" Margin="0,2"/>
+
         </StackPanel>
 
     </Grid>
