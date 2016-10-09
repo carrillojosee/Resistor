@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ResistorFrontEndProgram"
         mc:Ignorable="d"
-        Title="Resistor Calculations" Height="350" Width="525">
+        Title="Resistor Calculations" Height="600" Width="700">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition  Height="2*"/>
-            <RowDefinition  Height="*"/>
+            <RowDefinition  Height="2*"/>
             <RowDefinition  Height=".5*"/>
 
         </Grid.RowDefinitions>
@@ -18,10 +18,140 @@
             <ColumnDefinition Width="*"/>
 
         </Grid.ColumnDefinitions>
-        <ComboBox>
-            <ComboBoxItem Content="black"/>
-            <ComboBoxItem Content="red"/>
+        
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" >
+            
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="Find Resistor Value"/>
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="Please Select the appropriate options to find the value of the desired resistor:" TextWrapping="Wrap"/>
 
-        </ComboBox>
+            <TextBlock Text="Choose the number of bands:" Margin="10" />
+            <StackPanel HorizontalAlignment ="Center" VerticalAlignment="Center" Margin="4" Orientation="Horizontal">
+                <RadioButton GroupName="numOfBands" Content="Four Bands" IsChecked="True" Margin="0,0,10,0" />
+                <RadioButton GroupName="numOfBands" Content="Five Bands" />
+
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment ="Center" VerticalAlignment="Center" Margin="0,10,0,5" Orientation="Horizontal">
+                <TextBlock  Text="Band 1" Width="52"/>
+                <TextBlock  Text="Band 2" Width="52"/>
+                <TextBlock  Text="Band 3" Width="52"/>
+                <TextBlock  Text="Band 4" Width="52"/>
+                <TextBlock  Text="Band 5" Width="52"/>
+            </StackPanel>
+            
+            <StackPanel HorizontalAlignment="Center"  VerticalAlignment="Center"  Orientation="Horizontal">
+               <!--val band 1-->
+                <ComboBox Height="25" Width="50">
+                    <ComboBoxItem Content="Black" Background="Black"/>
+                    <ComboBoxItem Content="Brown" Background="Brown"/>
+                    <ComboBoxItem Content="Red" Background="Red"/>
+                    <ComboBoxItem Content="Orange" Background="Orange"/>
+                    <ComboBoxItem Content="Yellow" Background="Yellow"/>
+                    <ComboBoxItem Content="Green" Background="Green"/>
+                    <ComboBoxItem Content="Blue" Background="Blue"/>
+                    <ComboBoxItem Content="Violet" Background="Violet"/>
+                    <ComboBoxItem Content="Gray" Background="Gray"/>
+                    <ComboBoxItem Content="White" Background="White"/>
+                </ComboBox>
+                <!--val band 2-->
+
+                <ComboBox Height="25" Width="50">
+                    <ComboBoxItem Content="Black" Background="Black"/>
+                    <ComboBoxItem Content="Brown" Background="Brown"/>
+                    <ComboBoxItem Content="Red" Background="Red"/>
+                    <ComboBoxItem Content="Orange" Background="Orange"/>
+                    <ComboBoxItem Content="Yellow" Background="Yellow"/>
+                    <ComboBoxItem Content="Green" Background="Green"/>
+                    <ComboBoxItem Content="Blue" Background="Blue"/>
+                    <ComboBoxItem Content="Violet" Background="Violet"/>
+                    <ComboBoxItem Content="Gray" Background="Gray"/>
+                    <ComboBoxItem Content="White" Background="White"/>
+                </ComboBox>
+                <!--val band 3 only if resistor is 5 band resistor-->
+
+                <ComboBox Height="25" Width="50">
+                    <ComboBoxItem Content="Black" Background="Black"/>
+                    <ComboBoxItem Content="Brown" Background="Brown"/>
+                    <ComboBoxItem Content="Red" Background="Red"/>
+                    <ComboBoxItem Content="Orange" Background="Orange"/>
+                    <ComboBoxItem Content="Yellow" Background="Yellow"/>
+                    <ComboBoxItem Content="Green" Background="Green"/>
+                    <ComboBoxItem Content="Blue" Background="Blue"/>
+                    <ComboBoxItem Content="Violet" Background="Violet"/>
+                    <ComboBoxItem Content="Gray" Background="Gray"/>
+                    <ComboBoxItem Content="White" Background="White"/>
+                </ComboBox>
+                <!--multiplier color band-->
+
+                <ComboBox Height="25" Width="50">
+                    <ComboBoxItem Content="Black" Background="Black"/>
+                    <ComboBoxItem Content="Brown" Background="Brown"/>
+                    <ComboBoxItem Content="Red" Background="Red"/>
+                    <ComboBoxItem Content="Orange" Background="Orange"/>
+                    <ComboBoxItem Content="Yellow" Background="Yellow"/>
+                    <ComboBoxItem Content="Green" Background="Green"/>
+                    <ComboBoxItem Content="Blue" Background="Blue"/>
+                    <ComboBoxItem Content="Violet" Background="Violet"/>
+                
+                    <ComboBoxItem Content="Gold" Background="Gold"/>
+                    <ComboBoxItem Content="Silver" Background="Silver"/>           
+                </ComboBox>
+                <!--tolerance color band -->
+
+                <ComboBox Height="25" Width="50">
+                    <ComboBoxItem Content="Brown" Background="Brown"/>
+                    <ComboBoxItem Content="Red" Background="Red"/>
+
+                    <ComboBoxItem Content="Green" Background="Green"/>
+                    <ComboBoxItem Content="Blue" Background="Blue"/>
+                    <ComboBoxItem Content="Violet" Background="Violet"/>
+                    <ComboBoxItem Content="Gray" Background="Gray"/>
+
+                    <ComboBoxItem Content="Gold" Background="Gold"/>
+                    <ComboBoxItem Content="Silver" Background="Silver"/>
+                </ComboBox>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1">
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="Find the Equivalent Resistor Value"/>
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="Please Select the appropriate options to find the value of the desired resistor:" TextWrapping="Wrap"/>
+
+            <TextBlock Text="Select the Orientation of the resistors:" Margin="10" />
+            
+            <StackPanel HorizontalAlignment ="Center" VerticalAlignment="Center" Margin="4" Orientation="Horizontal">
+                <RadioButton GroupName="parallelSeries" Content="Series" IsChecked="True" Margin="0,0,10,0" />
+                <RadioButton GroupName="parallelSeries" Content="Parallel" />
+            </StackPanel>
+            <TextBlock Text="Enter the resistor values(inside the text block) separated by a space then hit the Calculate button in order to find the equivalent resistance:" TextWrapping="Wrap"/>
+            <TextBox  Height="50" BorderThickness="4"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Margin="0,10,0,0">Equivalent Resistance =</TextBlock>
+                <TextBox Height="20" Width="60" Margin="0,7" IsReadOnly="True"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0">
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="Find the Equivalent Resistors given a desired Resistor value"/>
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="Please Select the appropriate options to find the value of the desired resistor:" TextWrapping="Wrap"/>
+
+            <TextBlock Text="Select the Orientation of the resistors:" Margin="10" />
+
+            <StackPanel HorizontalAlignment ="Center" VerticalAlignment="Center" Margin="4" Orientation="Horizontal">
+                <RadioButton GroupName="parallelSeries2" Content="Series" IsChecked="True" Margin="0,0,10,0" />
+                <RadioButton GroupName="parallelSeries2" Content="Parallel" />
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Margin="0,10,0,0">Equivalent Resistance Wanted =</TextBlock>
+                <TextBox Height="20" Width="60" Margin="0,7"/>
+            </StackPanel>
+            
+            <TextBlock Text="Resistor values needed order to get the equivalent resistance that was specified:" TextWrapping="Wrap"/>
+            <TextBox  Height="50" BorderThickness="4" IsReadOnly="True"/>
+
+            
+        </StackPanel>
+
     </Grid>
 </Window>
