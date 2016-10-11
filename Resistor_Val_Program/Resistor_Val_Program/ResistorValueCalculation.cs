@@ -54,17 +54,110 @@ namespace ResistorNamespace
             gold = 5,  
             silver = 10 
         }
+        private int bandValue1;
+        public int BandValue1
+        {
+            get
+            {
+                return bandValue1;
+            }
+            set
+            {
+                bandValue1 = value; 
+            }
+        }
+
+        private int bandValue2;
+        public int BandValue2
+        {
+            get
+            {
+                return bandValue2;
+            }
+            set
+            {
+                bandValue2 = value;
+            }
+        }
+
+        private int bandValue3;
+        public int BandValue3
+        {
+            get
+            {
+                return bandValue3;
+            }
+            set
+            {
+                bandValue3 = value;
+            }
+        }
+
+        private double bandMultiplier;
+        public double BandMultiplier
+        {
+            get
+            {
+                return bandMultiplier;
+            }
+            set
+            {
+                bandMultiplier = value;
+            }
+        }
+
+        private double bandTolerance;
+        public double BandTolerance
+        {
+            get
+            {
+                return bandTolerance;
+            }
+            set
+            {
+                bandTolerance = value;
+            }
+        }
         public ResistorValueCalculation()
         {
 
         }
-        public ResistorValueCalculation(int val1, int val2, int mult, int tol)
+        public ResistorValueCalculation(int val1, int val2, double mult, double tol)
         {
-
+            BandValue1 = val1;
+            BandValue2 = val2;
+            BandValue3 = 0; 
+            BandMultiplier = mult;
+            BandTolerance = tol; 
         }
         public ResistorValueCalculation(int val1, int val2, int val3, int mult, int tol)
         {
+            BandValue1 = val1;
+            BandValue2 = val2;
+            BandValue3 = val3;
+            BandMultiplier = mult;
+            BandTolerance = tol;
+        }
 
+        public double EquilvaentResistanceMin()
+        {
+            int temp1, temp2, temp3;
+            temp1 = BandValue1 == 0 ? 0: BandValue1;
+            temp2 = BandValue2 == 0 ? 0 : BandValue1;
+            temp3 = BandValue2 == 0 ? 0 : BandValue1;
+
+            double temp = (temp1 + 100) + (temp2 + 10) + temp3;
+            return temp * BandMultiplier * (1 - BandTolerance) ;
+        }
+        public double EquilvaentResistanceMax()
+        {
+            int temp1, temp2, temp3;
+            temp1 = BandValue1 == 0 ? 0 : BandValue1;
+            temp2 = BandValue2 == 0 ? 0 : BandValue1;
+            temp3 = BandValue2 == 0 ? 0 : BandValue1;
+
+            double temp = (temp1 + 100) + (temp2 + 10) + temp3;
+            return temp * BandMultiplier * (1 + BandTolerance);
         }
 
     }
