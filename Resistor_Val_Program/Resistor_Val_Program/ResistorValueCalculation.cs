@@ -160,5 +160,27 @@ namespace ResistorNamespace
             return temp * BandMultiplier * (1 + BandTolerance);
         }
 
+        public double parallelResistorCalc( List<double> parallelList)
+        {
+            double calc = 0;
+            double prev = 0;
+            foreach(var temp in parallelList)
+            {
+                calc += Math.Pow(1 / prev + 1 / temp , -1) ;
+
+            }
+            return calc; 
+        }
+
+        public double seriesResistorCalc(List<double> parallelList)
+        {
+            double calc = 0;
+            foreach (var temp in parallelList)
+            {
+                calc += temp;
+
+            }
+            return calc;
+        }
     }
 }
