@@ -54,7 +54,7 @@ namespace Resistor_Val_Program
             //Console.WriteLine(temp.resistorsSeries.Count);
            ResistorValueCalculation temp3 = new ResistorValueCalculation();
            Console.WriteLine((int)ResistorValueCalculation.toleranceColors.grey);
-            Console.ReadLine();
+           Console.ReadLine();
         }
     }
 }

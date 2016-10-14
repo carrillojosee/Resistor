@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resistor_Val_Program", "Resistor_Val_Program\Resistor_Val_Program.csproj", "{BDA34334-17A9-472C-B014-BE67DFEB741E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resistor_Val_ProgramTests", "Resistor_Val_ProgramTests\Resistor_Val_ProgramTests.csproj", "{3D3B30A9-87CF-4CF6-8710-7051E8D5E16B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{BDA34334-17A9-472C-B014-BE67DFEB741E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDA34334-17A9-472C-B014-BE67DFEB741E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDA34334-17A9-472C-B014-BE67DFEB741E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D3B30A9-87CF-4CF6-8710-7051E8D5E16B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D3B30A9-87CF-4CF6-8710-7051E8D5E16B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D3B30A9-87CF-4CF6-8710-7051E8D5E16B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D3B30A9-87CF-4CF6-8710-7051E8D5E16B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

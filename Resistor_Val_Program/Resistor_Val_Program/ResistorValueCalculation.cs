@@ -13,7 +13,7 @@ namespace ResistorNamespace
         //make multiplier constant
         // tolerance in percent
         //
-        public enum bandValueColors
+        public enum bandValueColors :Int32
         {
             black = 0,
             brown = 1,
@@ -28,15 +28,15 @@ namespace ResistorNamespace
         }
         public enum multiplierColors
         {
-            black =  1,
-            brown =  10,
-            red =    100,
+            black = 1,
+            brown = 10,
+            red = 100,
             orange = 1000,
             yellow = 10000,
-            green =  100000,
-            blue =   1000000,
+            green = 100000,
+            blue = 1000000,
             violet = 10000000,
-            gold =   10,  //need to divide by this
+            gold = 10,  //need to divide by this
             silver = 100 // need to divide by this
         }
         public enum toleranceColors
@@ -45,14 +45,14 @@ namespace ResistorNamespace
             red = 2,
 
             //need to divide
-            green = 2,
-            blue = 4,
-            violet = 10,
-            grey = 20,
+            green = 2, //    .5%
+            blue = 4,  // .25%
+            violet = 10, // .1%
+            grey = 20, // .05%
 
             // no need to divide
-            gold = 5,  
-            silver = 10 
+            gold = 5,
+            silver = 10
         }
         private int bandValue1;
         public int BandValue1
@@ -63,7 +63,7 @@ namespace ResistorNamespace
             }
             set
             {
-                bandValue1 = value; 
+                bandValue1 = value;
             }
         }
 
@@ -122,57 +122,68 @@ namespace ResistorNamespace
         {
 
         }
-        public ResistorValueCalculation(int val1, int val2, double mult, double tol)
+        public ResistorValueCalculation(string val1, string val2, string mult, string tol)
         {
-            BandValue1 = val1;
-            BandValue2 = val2;
-            BandValue3 = 0; 
-            BandMultiplier = mult;
-            BandTolerance = tol; 
+            BandValue1 = findValfromString(val1);
+            BandValue2 = findValfromString(val2);
+            BandValue3 = 0;
+            BandMultiplier = findMultfromString(mult);
+            BandTolerance = findTolfromString(tol);
         }
-        public ResistorValueCalculation(int val1, int val2, int val3, int mult, int tol)
+        public ResistorValueCalculation(string val1, string val2, string val3, string mult, string tol)
         {
-            BandValue1 = val1;
-            BandValue2 = val2;
-            BandValue3 = val3;
-            BandMultiplier = mult;
-            BandTolerance = tol;
-        }
-
-        public double EquilvaentResistanceMin()
-        {
-            int temp1, temp2, temp3;
-            temp1 = BandValue1 == 0 ? 0: BandValue1;
-            temp2 = BandValue2 == 0 ? 0 : BandValue1;
-            temp3 = BandValue2 == 0 ? 0 : BandValue1;
-
-            double temp = (temp1 + 100) + (temp2 + 10) + temp3;
-            return temp * BandMultiplier * (1 - BandTolerance) ;
-        }
-        public double EquilvaentResistanceMax()
-        {
-            int temp1, temp2, temp3;
-            temp1 = BandValue1 == 0 ? 0 : BandValue1;
-            temp2 = BandValue2 == 0 ? 0 : BandValue1;
-            temp3 = BandValue2 == 0 ? 0 : BandValue1;
-
-            double temp = (temp1 + 100) + (temp2 + 10) + temp3;
-            return temp * BandMultiplier * (1 + BandTolerance);
+            BandValue1 = findValfromString(val1);
+            BandValue2 = findValfromString(val2);
+            BandValue3 = findValfromString(val3);
+            BandMultiplier = findMultfromString(mult);
+            BandTolerance = findTolfromString(tol);
         }
 
-        public double parallelResistorCalc( List<double> parallelList)
+        public double EquilvaentResistance()
+        {
+            double temp;
+            if( BandValue3 ==0 )
+            {
+                temp = (BandValue1 * 10) + BandValue2;
+            }
+            else
+            {
+                temp = (BandValue1 * 100) + (BandValue2 * 10) + BandValue3;
+            }
+            return temp * BandMultiplier;
+        }
+        public double EquilvaentResistanceTolerance()
+        {
+            double temp;
+            if (BandValue3 == 0)
+            {
+                temp = (BandValue1 * 10) + BandValue2;
+            }
+            else
+            {
+                temp = (BandValue1 * 100) + (BandValue2 * 10) + BandValue3;
+            }
+            return temp * BandMultiplier * BandTolerance;
+        }
+
+        public static double parallelResistorCalc(List<double> parallelList)
         {
             double calc = 0;
-            double prev = 0;
-            foreach(var temp in parallelList)
+            double prev = parallelList[1];
+            for(int i = 1; i < parallelList.Count; i++)
             {
-                calc += Math.Pow(1 / prev + 1 / temp , -1) ;
+                if( prev !=0 || parallelList[i] != 0)
+                {
+                    calc = Math.Pow(1 / prev + 1 / parallelList[i], -1);
+                    prev = calc;
+                }
+               
 
             }
-            return calc; 
+            return calc;
         }
 
-        public double seriesResistorCalc(List<double> parallelList)
+        public static double seriesResistorCalc(List<double> parallelList)
         {
             double calc = 0;
             foreach (var temp in parallelList)
@@ -181,6 +192,70 @@ namespace ResistorNamespace
 
             }
             return calc;
+        }
+
+        public int findValfromString(string s)
+        {
+            bandValueColors enumOutput;
+            int outputVal = 0;
+            if ( Enum.TryParse( s, out enumOutput))
+            {
+                
+                outputVal = (int)enumOutput; 
+            }
+            else
+            {
+                outputVal = -1; 
+            }
+
+            
+            return outputVal;
+
+        }
+        public double findMultfromString(string s)
+        {
+            multiplierColors enumOutput;
+            double outputVal = 0;
+            if (Enum.TryParse(s, out enumOutput))
+            {
+
+                outputVal = (double)enumOutput;
+                if (enumOutput == multiplierColors.silver || enumOutput == multiplierColors.gold )
+                {
+                    outputVal = 1 / outputVal;
+                }
+            }
+            else
+            {
+                outputVal = -1;
+            }
+            // need to divide silver, gold
+
+            return outputVal;
+        }
+        public double findTolfromString(string  s)
+        {
+            toleranceColors enumOutput;
+            double outputVal = 0;
+            if (Enum.TryParse(s, out enumOutput))
+            {
+                outputVal = (double)enumOutput;
+                if (enumOutput == toleranceColors.green|| enumOutput == toleranceColors.blue ||
+                    enumOutput == toleranceColors.violet || enumOutput == toleranceColors.grey)
+                {
+                    outputVal = 1/ outputVal;
+                }
+
+                outputVal = outputVal / 100; 
+            }
+            else
+            {
+                outputVal = -1;
+            }
+
+            // need to divide by  value and 100 green, blue, violet, grey
+   
+            return outputVal;
         }
     }
 }
