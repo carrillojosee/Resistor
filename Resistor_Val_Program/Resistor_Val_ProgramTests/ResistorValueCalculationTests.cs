@@ -51,7 +51,16 @@ namespace ResistorNamespace.Tests
             //Console.WriteLine(ResistorValueCalculation.parallelResistorCalc(parallelList));
             Assert.AreEqual(500, ResistorValueCalculation.parallelResistorCalc(parallelList), 5);
         }
-
+        [TestMethod()]
+        public void parallelResistorCalcTest2()
+        {
+            List<double> parallelList = new List<double>()
+            {
+                1000, 1000, 1000
+            };
+            //Console.WriteLine(ResistorValueCalculation.parallelResistorCalc(parallelList));
+            Assert.AreEqual(333, ResistorValueCalculation.parallelResistorCalc(parallelList), 5);
+        }
         [TestMethod()]
         public void seriesResistorCalcTest()
         {
@@ -61,7 +70,24 @@ namespace ResistorNamespace.Tests
             };
             Assert.AreEqual(11650, ResistorValueCalculation.seriesResistorCalc(seriesList) );
         }
-
+        [TestMethod()]
+        public void seriesResistorCalcTest2()
+        {
+            List<double> seriesList = new List<double>()
+            {
+                1000,10000
+            };
+            Assert.AreEqual(11000, ResistorValueCalculation.seriesResistorCalc(seriesList));
+        }
+        [TestMethod()]
+        public void seriesResistorCalcTest3()
+        {
+            List<double> seriesList = new List<double>()
+            {
+                1000,1000,1000,1000,1000,1000,1000,1000,1000
+            };
+            Assert.AreEqual(9000, ResistorValueCalculation.seriesResistorCalc(seriesList));
+        }
 
         [TestMethod()]
         public void findValfromStringTest()
