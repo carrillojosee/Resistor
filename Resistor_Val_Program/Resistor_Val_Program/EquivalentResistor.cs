@@ -20,7 +20,7 @@ namespace ResistorNamespace
             thirdR = -1;
             p_or_s = parallel_series;
         }
-        public EquivalentResistor( double a, double b, string parallel_series)
+        public EquivalentResistor(double a, double b, string parallel_series)
         {
             firstR = a;
             secondR = b;
@@ -32,17 +32,17 @@ namespace ResistorNamespace
         {
             firstR = a;
             secondR = b;
-            thirdR =  c;
+            thirdR = c;
             p_or_s = parallel_series;
 
         }
         public double sum()
         {
-            if(thirdR == -1 && secondR == -1)
+            if (thirdR == -1 && secondR == -1)
             {
                 return firstR;
             }
-            else if(thirdR == -1)
+            else if (thirdR == -1)
             {
                 return firstR + secondR;
             }
@@ -78,10 +78,10 @@ namespace ResistorNamespace
                 return "Resistor " + firstR.ToString() +
                      "=" + sum().ToString();
             }
-            else if( thirdR==-1)
+            else if (thirdR == -1)
             {
                 return p_or_s + " " + firstR.ToString() +
-                     "+" + secondR.ToString() + "=" + (p_or_s == "Series" ? sum().ToString(): parallelEQ().ToString() );
+                     "+" + secondR.ToString() + "=" + (p_or_s == "Series" ? sum().ToString() : parallelEQ().ToString());
                 // p_or_s =="Series": sum.toString(): parallelEQ.toString()
             }
             else
