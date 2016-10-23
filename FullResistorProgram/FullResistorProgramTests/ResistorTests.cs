@@ -32,7 +32,7 @@ namespace ResistorNamespace.Tests
             [TestMethod()]
             public void EquilvaentResistanceToleranceTest()
             {
-                var valTest = new ResistorValueCalculation("brown", "red", "violet", "orange", "gold");
+                var valTest = new ResistorValueCalculation("Brown", "Red", "Violet", "Orange", "Gold");
                 //Console.WriteLine( valTest.EquilvaentResistanceMax() );
                 Assert.AreEqual(6350, valTest.EquilvaentResistanceTolerance());
             }

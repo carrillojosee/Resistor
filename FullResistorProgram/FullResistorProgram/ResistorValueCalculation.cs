@@ -120,23 +120,27 @@ namespace ResistorNamespace
         }
         public ResistorValueCalculation()
         {
-
+            BandValue1 = 0;
+            BandValue2 = 0;
+            BandValue3 = 0;
+            BandMultiplier = 0;
+            BandTolerance = 0;
         }
         public ResistorValueCalculation(string val1, string val2, string mult, string tol)
         {
-            BandValue1 = findValfromString(val1);
-            BandValue2 = findValfromString(val2);
+            BandValue1 = findValfromString(val1.ToLower());
+            BandValue2 = findValfromString(val2.ToLower());
             BandValue3 = 0;
-            BandMultiplier = findMultfromString(mult);
-            BandTolerance = findTolfromString(tol);
+            BandMultiplier = findMultfromString(mult.ToLower());
+            BandTolerance = findTolfromString(tol.ToLower());
         }
         public ResistorValueCalculation(string val1, string val2, string val3, string mult, string tol)
         {
-            BandValue1 = findValfromString(val1);
-            BandValue2 = findValfromString(val2);
-            BandValue3 = findValfromString(val3);
-            BandMultiplier = findMultfromString(mult);
-            BandTolerance = findTolfromString(tol);
+            BandValue1 = findValfromString(val1.ToLower());
+            BandValue2 = findValfromString(val2.ToLower());
+            BandValue3 = findValfromString(val3.ToLower());
+            BandMultiplier = findMultfromString(mult.ToLower());
+            BandTolerance = findTolfromString(tol.ToLower());
         }
 
         public double EquilvaentResistance()
@@ -220,7 +224,10 @@ namespace ResistorNamespace
             {
 
                 outputVal = (double)enumOutput;
-                if (enumOutput == multiplierColors.silver || enumOutput == multiplierColors.gold )
+                Console.WriteLine(outputVal);
+                Console.WriteLine(enumOutput);
+
+                if (enumOutput.ToString().CompareTo("silver") == 0 || enumOutput.ToString().CompareTo("gold") == 0 )
                 {
                     outputVal = 1 / outputVal;
                 }
@@ -230,7 +237,7 @@ namespace ResistorNamespace
                 outputVal = -1;
             }
             // need to divide silver, gold
-
+            Console.WriteLine(outputVal);
             return outputVal;
         }
         public double findTolfromString(string  s)
@@ -240,8 +247,8 @@ namespace ResistorNamespace
             if (Enum.TryParse(s, out enumOutput))
             {
                 outputVal = (double)enumOutput;
-                if (enumOutput == toleranceColors.green|| enumOutput == toleranceColors.blue ||
-                    enumOutput == toleranceColors.violet || enumOutput == toleranceColors.grey)
+                if (enumOutput.ToString().CompareTo("green") == 0 || enumOutput.ToString().CompareTo("blue") == 0 ||
+                    enumOutput.ToString().CompareTo("violet") == 0 || enumOutput.ToString().CompareTo("grey") == 0)
                 {
                     outputVal = 1/ outputVal;
                 }

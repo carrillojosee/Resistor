@@ -26,9 +26,8 @@
 
             <TextBlock Text="Choose the number of bands:" Margin="10" />
             <StackPanel HorizontalAlignment ="Center" VerticalAlignment="Center" Margin="4" Orientation="Horizontal">
-                <RadioButton GroupName="numOfBands" Content="Four Bands" IsChecked="True" Margin="0,0,10,0" />
-                <RadioButton GroupName="numOfBands" Content="Five Bands" />
-
+                <RadioButton Name="fourBands" GroupName="numOfBands" Content="Four Bands" IsChecked="True" Margin="0,0,10,0"  />
+                <RadioButton Name="fiveBands" GroupName="numOfBands" Content="Five Bands" />
             </StackPanel>
 
             <StackPanel HorizontalAlignment ="Center" VerticalAlignment="Center" Margin="0,10,0,5" Orientation="Horizontal">
@@ -41,7 +40,7 @@
 
             <StackPanel HorizontalAlignment="Center"  VerticalAlignment="Center"  Orientation="Horizontal">
                 <!--val band 1-->
-                <ComboBox Height="25" Width="50">
+                <ComboBox Height="25" Width="50" Name="ColorBands1">
                     <ComboBoxItem Content="Black" Background="Black"/>
                     <ComboBoxItem Content="Brown" Background="Brown"/>
                     <ComboBoxItem Content="Red" Background="Red"/>
@@ -55,7 +54,7 @@
                 </ComboBox>
                 <!--val band 2-->
 
-                <ComboBox Height="25" Width="50">
+                <ComboBox Height="25" Width="50" Name="ColorBands2">
                     <ComboBoxItem Content="Black" Background="Black"/>
                     <ComboBoxItem Content="Brown" Background="Brown"/>
                     <ComboBoxItem Content="Red" Background="Red"/>
@@ -69,7 +68,7 @@
                 </ComboBox>
                 <!--val band 3 only if resistor is 5 band resistor-->
 
-                <ComboBox Height="25" Width="50">
+                <ComboBox Height="25" Width="50" Name="ColorBands3" IsEnabled="{Binding IsChecked, ElementName=fiveBands}">
                     <ComboBoxItem Content="Black" Background="Black"/>
                     <ComboBoxItem Content="Brown" Background="Brown"/>
                     <ComboBoxItem Content="Red" Background="Red"/>
@@ -83,7 +82,7 @@
                 </ComboBox>
                 <!--multiplier color band-->
 
-                <ComboBox Height="25" Width="50">
+                <ComboBox Height="25" Width="50" Name="multiplierBand">
                     <ComboBoxItem Content="Black" Background="Black"/>
                     <ComboBoxItem Content="Brown" Background="Brown"/>
                     <ComboBoxItem Content="Red" Background="Red"/>
@@ -98,7 +97,7 @@
                 </ComboBox>
                 <!--tolerance color band -->
 
-                <ComboBox Height="25" Width="50">
+                <ComboBox Height="25" Width="50" Name="toleranceBand">
                     <ComboBoxItem Content="Brown" Background="Brown"/>
                     <ComboBoxItem Content="Red" Background="Red"/>
 
@@ -114,9 +113,9 @@
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock Margin="0,10,0,0">Resistance =</TextBlock>
-                <TextBox Height="20" Width="60" Margin="0,7" IsReadOnly="True"/>
+                <TextBox Name ="ResistorColorBandOutput" Height="20" Width="200" Margin="0,7" IsReadOnly="True" />
             </StackPanel>
-            <Button Content="Calculate" Width="70" Height="25"/>
+            <Button Name="ResistorColorBandButton" Content="Calculate" Width="70" Height="25" Click="ResistorColorBandButton_Click"/>
 
 
         </StackPanel>
