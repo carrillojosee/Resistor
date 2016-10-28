@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ResistorNamespace;
+using FullResistorProgram;
+using System.IO;
 
 namespace FullResistorProgram
 {
@@ -24,6 +26,9 @@ namespace FullResistorProgram
         public MainWindow()
         {
             InitializeComponent();
+         
+
+
         }
 
         private ResistorValueCalculation bandResisFour = new ResistorValueCalculation();
@@ -32,7 +37,7 @@ namespace FullResistorProgram
         private void ResistorColorBandButton_Click(object sender, RoutedEventArgs e)
         {
 
-            if(fourBands.IsEnabled)
+            if( (bool)fourBands.IsChecked && (bool)!fiveBands.IsChecked)
             {
 
                 bandResisFour.BandValue1 = bandResisFour.findValfromString(ColorBands1.Text.ToLower());
@@ -56,7 +61,65 @@ namespace FullResistorProgram
                     bandResisFive.EquilvaentResistanceTolerance().ToString() + " Ω";
             }
         }
+        private List<double> inputResisListDouble = new List<double>();
 
+        private void equivalentResistoCalc_Click(object sender, RoutedEventArgs e)
+        {
+            //inputResistance
+            //outputResistanceEquivalent
+            List<string> tempString = inputResistance.Text.Split(new char[] { ',' }).ToList();
+            inputResisListDouble = tempString.Select(x => double.Parse(x)).ToList();
 
+            
+
+            if (  (bool)seriesRadioButton.IsChecked  && (bool)!parallelRadioButton.IsChecked )
+            {
+                outputResistanceEquivalent.Text = ResistorValueCalculation.seriesResistorCalc(inputResisListDouble).ToString();
+            }
+            else
+            {
+                outputResistanceEquivalent.Text = ResistorValueCalculation.parallelResistorCalc(inputResisListDouble).ToString();
+            }
+        }
+        private FindResistor ResisEQ = new FindResistor();
+        //private FindResistor ResisEQParallel;
+
+        private void EQresistanceWantedButton_Click(object sender, RoutedEventArgs e)
+        {
+            //resistanceEQwanted
+            //EQresisWantedOutput
+            //Console.WriteLine(Convert.ToDouble(resistanceEQwanted.Text));
+
+            //clear contents 
+            EQresisWantedOutput.Text = "";
+
+            ResisEQ.findAll(Convert.ToDouble(resistanceEQwanted.Text ) );
+            StreamWriter file = new StreamWriter(@"C:\@code\Resistor_Program\outputResis2.txt");
+
+            if ((bool)seriesRadioButton2.IsChecked && (bool)!parallelRadioButton2.IsChecked)
+            {
+                foreach (var x in ResisEQ.resistor_S_List)
+                {
+                    file.WriteLine(x.ToString());
+                    EQresisWantedOutput.Text += x.ToString() + "\n";
+                }
+            }
+            else
+            {
+                foreach (var x in ResisEQ.resistor_P_List)
+                {
+                    file.WriteLine(x.ToString());
+                    EQresisWantedOutput.Text += x.ToString() + "\n";
+                }
+            }
+
+            file.Flush(); //clears buffers
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

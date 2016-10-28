@@ -68,6 +68,25 @@ namespace ResistorNamespace
                 return Math.Pow(tempVal, -1);
             }
         }
+
+        public double parallelEquiv( List<double> tempList)
+        {
+            double a = tempList[0];
+            double equiParallel = 0;
+            if(tempList.Count > 0)
+            {
+                for (int i = 1; i < tempList.Count; i++)
+                {
+                    equiParallel = 1 / equiParallel + 1 / tempList[i];
+                }
+                return Math.Pow(equiParallel, -1);
+            }
+            else
+            {
+                return -1; 
+            }
+
+        }
         public override string ToString()
         {
             //string tempString = "";
