@@ -16,6 +16,7 @@ using ResistorNamespace;
 using FullResistorProgram;
 using System.IO;
 
+
 namespace FullResistorProgram
 {
     /// <summary>
@@ -26,7 +27,7 @@ namespace FullResistorProgram
         public MainWindow()
         {
             InitializeComponent();
-         
+
 
 
         }
@@ -37,7 +38,7 @@ namespace FullResistorProgram
         private void ResistorColorBandButton_Click(object sender, RoutedEventArgs e)
         {
 
-            if( (bool)fourBands.IsChecked && (bool)!fiveBands.IsChecked)
+            if ((bool)fourBands.IsChecked && (bool)!fiveBands.IsChecked)
             {
 
                 bandResisFour.BandValue1 = bandResisFour.findValfromString(ColorBands1.Text.ToLower());
@@ -46,7 +47,7 @@ namespace FullResistorProgram
                 bandResisFour.BandMultiplier = bandResisFour.findMultfromString(multiplierBand.Text.ToLower());
                 bandResisFour.BandTolerance = bandResisFour.findTolfromString(toleranceBand.Text.ToLower());
 
-                ResistorColorBandOutput.Text = bandResisFour.EquilvaentResistance().ToString()+ " +/- " +
+                ResistorColorBandOutput.Text = bandResisFour.EquilvaentResistance().ToString() + " +/- " +
                     bandResisFour.EquilvaentResistanceTolerance().ToString() + " Ω";
             }
             else
@@ -70,9 +71,9 @@ namespace FullResistorProgram
             List<string> tempString = inputResistance.Text.Split(new char[] { ',' }).ToList();
             inputResisListDouble = tempString.Select(x => double.Parse(x)).ToList();
 
-            
 
-            if (  (bool)seriesRadioButton.IsChecked  && (bool)!parallelRadioButton.IsChecked )
+
+            if ((bool)seriesRadioButton.IsChecked && (bool)!parallelRadioButton.IsChecked)
             {
                 outputResistanceEquivalent.Text = ResistorValueCalculation.seriesResistorCalc(inputResisListDouble).ToString();
             }
@@ -89,37 +90,69 @@ namespace FullResistorProgram
             //resistanceEQwanted
             //EQresisWantedOutput
             //Console.WriteLine(Convert.ToDouble(resistanceEQwanted.Text));
-
-            //clear contents 
+            //string fileString = "";
             EQresisWantedOutput.Text = "";
 
-            ResisEQ.findAll(Convert.ToDouble(resistanceEQwanted.Text ) );
-            StreamWriter file = new StreamWriter(@"C:\@code\Resistor_Program\outputResis2.txt");
+            ResisEQ.findAll(Convert.ToDouble(resistanceEQwanted.Text));
 
-            if ((bool)seriesRadioButton2.IsChecked && (bool)!parallelRadioButton2.IsChecked)
+            if( !String.IsNullOrEmpty( textFileDest.Text ) )
             {
-                foreach (var x in ResisEQ.resistor_S_List)
+                StreamWriter file = new StreamWriter(textFileDest.Text);
+
+                if ((bool)seriesRadioButton2.IsChecked && (bool)!parallelRadioButton2.IsChecked)
                 {
-                    file.WriteLine(x.ToString());
-                    EQresisWantedOutput.Text += x.ToString() + "\n";
+                    foreach (var x in ResisEQ.resistor_S_List)
+                    {
+                        file.WriteLine(x.ToString());
+                        EQresisWantedOutput.Text += x.ToString() + "\n";
+                    }
                 }
+                else
+                {
+                    foreach (var x in ResisEQ.resistor_P_List)
+                    {
+                        file.WriteLine(x.ToString());
+                        EQresisWantedOutput.Text += x.ToString() + "\n";
+                    }
+                }
+
+                file.Flush(); //clears buffers
             }
             else
             {
-                foreach (var x in ResisEQ.resistor_P_List)
-                {
-                    file.WriteLine(x.ToString());
-                    EQresisWantedOutput.Text += x.ToString() + "\n";
-                }
+                MessageBox.Show("Please Enter a folder location for the .txt file");
             }
-
-            file.Flush(); //clears buffers
 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void folderDirectoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Initializing Open Dialog
+            Gat.Controls.OpenDialogView openDialog = new Gat.Controls.OpenDialogView();
+            Gat.Controls.OpenDialogViewModel vm = (Gat.Controls.OpenDialogViewModel)openDialog.DataContext;
+
+            // Adding file filter
+            //vm.AddFileFilterExtension(".txt");
+
+
+
+            // Show dialog and take result into account
+            bool? result = vm.Show();
+            if (result == true)
+            {
+                // Get selected file path
+                textFileDest.Text = vm.SelectedFolder.Path;
+            }
+            else
+            {
+                textFileDest.Text = string.Empty;
+            }
+
         }
     }
 }

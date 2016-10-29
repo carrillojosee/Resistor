@@ -176,7 +176,10 @@
 
         <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="0">
             <TextBlock TextWrapping="Wrap"> Enter the path of the text file and/or xlsm file below (C:\@code\)</TextBlock>
-            <TextBox Name="textFileDest" BorderThickness="2" Width="300" Height="40" Margin="2"/>
+            <StackPanel Orientation="Horizontal" >
+                <TextBox Name="textFileDest" BorderThickness="2" Width="280" Height="30" Margin="2"/>
+                <Button Name="folderDirectoryButton" Content="..." Width="30" Height="30" Click="folderDirectoryButton_Click" />
+            </StackPanel>
         </StackPanel>
 
         <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1">
